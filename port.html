@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a0bbed;
+            color: #141111;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        header {
+            background-color: #9e7171;
+            color: rgb(24, 24, 23);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 36px;
+        }
+        
+        header .tagline {
+            font-size: 18px;
+            margin-top: 5px;
+            padding-bottom: 10px;
+        }
+        
+        nav {
+            background-color: #444;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            color: rgb(246, 241, 241);
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        .section {
+            padding: 50px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        /* Projects Section */
+        
+        .projects-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .project-card {
+            background-color: #c9d9e0;
+            width: 30%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-card .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .project-card h3 {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+        
+        .project-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .project-card .github-link {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        
+        .project-card .github-link:hover {
+            background-color: #555;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        /* Styling for the "Skill" Title (same as "My Projects") */
+        
+        .experience-title,
+        .education-title {
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        /* Media Queries for Responsiveness */
+        
+        .experience-container {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .experience-column,
+        .education-column {
+            background-color: rgb(170, 151, 153);
+            width: 100%;
+            /* Adjust width for mobile devices */
+        }
+        
+        #scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        form input,
+        form textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        form button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        #form-error {
+            color: red;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        #scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .dark-mode header,
+        .dark-mode footer {
+            background-color: #222;
+        }
+        
+        .dark-mode nav {
+            background-color: #111;
+        }
+        /* Media Queries for Responsiveness */
+        
+        @media (max-width: 768px) {
+            .project-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .project-card {
+                width: 80%;
+            }
+        }
+        /* Contact Section */
+        
+        .contact-section {
+            background-color: #5e5e7b;
+            padding: 50px 0;
+        }
+        
+        .contact-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .contact-form button {
+            background-color: #7c4dff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .contact-form button:hover {
+            background-color: #5c2bba;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>MD Tanvir Islam Shishir</h1>
+        <p class="tagline">Web Developer | Designer</p>
+        <img src="1.jpeg" height="200px" </header>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#Skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="container">
+                <h2>Welcome to My Portfolio</h2>
+                <p>I am a dedicated web development student with a passion for building modern and responsive websites. I have hands-on experience with HTML, CSS, and JavaScript, and I am continuously improving my skills by working on real-world projects.</p>
+            </div>
+        </section>
+        <!-- Experience Section -->
+        <div class="experience-title">Skills</div>
+        <div class="experience-container">
+            <!-- Programming Languages -->
+            <div class="experience-column">
+                <h3>Programming Language</h3>
+                <ul>
+                    <li>C++ - Experienced</li>
+                    <li>Java - Experienced</li>
+                    <li>Python - Intermediate</li>
+                    <li>C# - Intermediate</li>
+                    <li>JavaScript - Basic</li>
+                    <li>TypeScript - Intermediate</li>
+                </ul>
+            </div>
+
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="container">
+                    <h2>My Projects</h2>
+                    <div class="projects-container">
+                        <!-- Project 1: Super Shop Management System -->
+                        <div class="project-card">
+                            <img src="4.avif" alt="Super Shop Management System">
+                            <div class="card-body">
+                                <h3>Super Shop Management System</h3>
+                                <p>A comprehensive system to manage a retail store’s sales, inventory, and billing.</p>
+                                <a href="https://github.com/tanvirislam3610-debug?tab=repositories" class="github-link" target="_blank">Github</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: RFID-based Attendance System -->
+                        <div class="project-card">
+                            <img src="3.png" alt="RFID-based Attendance System">
+                            <div class="card-body">
+                                <h3>RFID-based Attendance System</h3>
+                                <p>A modern solution using RFID technology to track attendance in schools and offices.</p>
+                                <a href="https://github.com/tanvirislam3610-debug?tab=repositories" class="github-link" target="_blank">Github</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Hotel Management System -->
+                        <div class="project-card">
+                            <img src="2.png" alt="Weather Forecasting Management System">
+                            <div class="card-body">
+                                <h3>Weather Forecasting Management System</h3>
+                                <p>A system designed to collect, analyze, and manage weather data, providing accurate forecasts and supporting decision-making for weather-related activities.</p>
+                                <a href="https://github.com/tanvirislam3610-debug?tab=repositories" class="github-link" target="_blank">Github</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <div class="container">
+                    <h2>Contact</h2>
+                    <p>I'm always open to discussing new opportunities and interesting projects. Whether you have a project in mind, want to collaborate, or just want to say hello, I would love to hear from you!</p>
+                    <form id="contact-form" class="contact-form">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <textarea id="message" placeholder="Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                        <p id="form-error" style="color: red;"></p>
+                    </form>
+                </div>
+            </section>
+            <!-- Footer Section -->
+            <footer>
+                <p>&copy; 2026 Md Tanvir Islam. All rights reserved.</p>
+            </footer>
+
+            <button id="scroll-top">↑</button>
+
+            <script>
+                // Sample project data
+                const projects = [{
+                    title: "Project 1",
+                    description: "A description of project 1.",
+                    image: "https://via.placeholder.com/300",
+                    link: "https://github.com"
+                }, {
+                    title: "Project 2",
+                    description: "A description of project 2.",
+                    image: "https://via.placeholder.com/300",
+                    link: "https://github.com"
+                }, {
+                    title: "Project 3",
+                    description: "A description of project 3.",
+                    image: "https://via.placeholder.com/300",
+                    link: "https://github.com"
+                }];
+
+                // Render Projects Dynamically
+                const renderProjects = () => {
+                    const projectCards = document.getElementById("project-cards");
+                    projects.forEach(project => {
+                        const card = document.createElement("div");
+                        card.className = "project-card";
+                        card.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <button onclick="window.location.href='${project.link}'">View Project</button>
+                `;
+                        projectCards.appendChild(card);
+                    });
+                };
+                renderProjects();
+
+                // Form Validation
+                document.getElementById("contact-form").addEventListener("submit", function(event) {
+                    event.preventDefault();
+
+                    let name = document.getElementById("name").value;
+                    let email = document.getElementById("email").value;
+                    let subject = document.getElementById("subject").value;
+                    let message = document.getElementById("message").value;
+                    let errorMessage = document.getElementById("form-error");
+
+                    if (name && email && subject && message) {
+                        errorMessage.textContent = "";
+                        alert(⁠ Message sent successfully! ⁠);
+                        this.reset();
+                    } else {
+                        errorMessage.textContent = "All fields are required and email must be valid.";
+                    }
+                });
+
+                // Dark/Light Mode Toggle
+                const toggleMode = () => {
+                    const body = document.body;
+                    body.classList.toggle("dark-mode");
+                    localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
+                };
+
+                // Load saved theme
+                if (localStorage.getItem("theme") === "dark") {
+                    document.body.classList.add("dark-mode");
+                }
+
+                // Scroll to Top Button
+                const scrollTopButton = document.getElementById("scroll-top");
+                window.onscroll = () => {
+                    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                        scrollTopButton.style.display = "block";
+                    } else {
+                        scrollTopButton.style.display = "none";
+                    }
+                };
+
+                scrollTopButton.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            </script>
+</body>
+
+</html>
